@@ -1,0 +1,102 @@
+body {
+  color: #1ab2aa;
+  margin: 20px;
+  padding: 50px;
+  background: radial-gradient(
+    592px at 48.2% 50%,
+    rgba(255, 255, 249, 0.6) 0%,
+    rgb(160, 199, 254) 74.6%
+  );
+  border: 1px solid #cbeaf7;
+  font-family: "Coming Soon", cursive;
+}
+h1 {
+  font-weight: 900;
+  text-align: center;
+  color: rgb(90, 101, 122);
+  padding-bottom: 20px;
+}
+h2 {
+  font-weight: 300;
+  font-size: 21px;
+  font-weight: bolder;
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 10px;
+  color: #8c70ff;
+}
+h3 {
+  font-weight: 300;
+  font-size: 19px;
+  text-align: left;
+  padding-left: 10px;
+  color: #8c70ff;
+}
+
+.sunny-image {
+  width: 120px;
+  padding-top: 40px;
+  margin-left: 40px;
+}
+.expected-temp {
+  font-size: 16px;
+  font-weight: 300;
+  text-align: right;
+  padding-top: 20px;
+  line-height: 35px;
+}
+
+.temperature-scale {
+  font-size: 40px;
+  font-weight: 300;
+  color: rgb(90, 101, 122);
+  text-align: center;
+  margin-top: 20px;
+}
+.temperature {
+  font-size: 35px;
+}
+.units {
+  position: relative;
+  top: -15px;
+}
+.h-100 {
+  background-color: #cfe2fd;
+}
+.forecast {
+  border: 1px solid #cbeaf7;
+  margin: 20px;
+  padding: 5px 20px;
+  font-size: 25px;
+  border-radius: 10px;
+}
+.five-day-forecast {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.card-title {
+  font-size: 17px;
+  height: 30px;
+  padding: 10px 10px;
+}
+img.cloud-sunny {
+  width: 70px;
+  padding-bottom: 10px;
+}
+img.thunder-rainy {
+  width: 70px;
+  padding-bottom: 10px;
+}
+img.rainy {
+  width: 70px;
+  padding-bottom: 10px;
+}
+img.sunny-forecast {
+  width: 70px;
+  padding-bottom: 10px;
+}
+.card-body {
+  text-align: center;
+}
