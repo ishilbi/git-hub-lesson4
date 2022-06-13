@@ -57,16 +57,21 @@ function displayWeatherCondition(response) {
   document.querySelector("#weather-description").innerHTML =
     response.data.weather[0].main;
 }
-function search(event) {
-  event.preventDefault();
+
+function search(city) {
   let apiKey = "f3a66372ec0940e078d8212f937f2ff1";
-  let city = document.querySelector("#city-input").value;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", search);
+function handleSubmit(event) {
+  event.preventDefault();
+  let city = document.querySelector("#city-input").value;
+  search(city);
+}
+
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", handleSubmit);
 
 function showButtonResults(response) {
   let currentTemperature = document.querySelector(".temperature");
@@ -88,3 +93,4 @@ function getCurrentPosition() {
 }
 let button = document.querySelector("button");
 button.addEventListener("click", getCurrentPosition);
+search("Seoul");
