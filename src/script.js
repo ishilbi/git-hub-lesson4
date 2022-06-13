@@ -46,6 +46,9 @@ function displayWeatherCondition(response) {
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.main.temp
   );
+  document.querySelector("#feels-like").innerHTML = Math.round(
+    response.data.main.feels_like
+  );
   document.querySelector("#humidity-level").innerHTML =
     response.data.main.humidity;
   document.querySelector("#wind-speed").innerHTML = Math.round(
