@@ -54,12 +54,19 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
 
 function showTemp(response) {
+  console.log(response.data);
   let temperature = Math.round(response.data.main.temp);
   let displayTemperature = document.querySelector(".temperature");
 
   displayTemperature.innerHTML = `${temperature}`;
   let h2 = document.querySelector("h2");
   h2.innerHTML = ` ${response.data.name} 📍`;
+
+  document.querySelector("#humidity-level").innerHTML =
+    response.data.main.humidity;
+  document.querySelector("#wind-speed").innerHTML = Math.round(
+    response.data.wind.speed
+  );
 }
 
 function showButtonResults(response) {
