@@ -40,28 +40,12 @@ function convertCelsius(event) {
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertCelsius);
 
-function search(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#city-input");
-  let h2 = document.querySelector("h2");
-  h2.innerHTML = `${searchInput.value} 📍`;
-  let apiKey = "f3a66372ec0940e078d8212f937f2ff1";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(showTemp);
-}
-
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", search);
-
-function showTemp(response) {
+function displayWeatherCondition(response) {
   console.log(response.data);
-  let temperature = Math.round(response.data.main.temp);
-  let displayTemperature = document.querySelector(".temperature");
-
-  displayTemperature.innerHTML = `${temperature}`;
-  let h2 = document.querySelector("h2");
-  h2.innerHTML = ` ${response.data.name} 📍`;
-
+  document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#temperature").innerHTML = Math.round(
+    response.data.main.temp
+  );
   document.querySelector("#humidity-level").innerHTML =
     response.data.main.humidity;
   document.querySelector("#wind-speed").innerHTML = Math.round(
@@ -70,6 +54,16 @@ function showTemp(response) {
   document.querySelector("#weather-description").innerHTML =
     response.data.weather[0].main;
 }
+function search(event) {
+  event.preventDefault();
+  let apiKey = "f3a66372ec0940e078d8212f937f2ff1";
+  let city = document.querySelector("#city-input").value;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayWeatherCondition);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", search);
 
 function showButtonResults(response) {
   let currentTemperature = document.querySelector(".temperature");
