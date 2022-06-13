@@ -67,6 +67,8 @@ function showTemp(response) {
   document.querySelector("#wind-speed").innerHTML = Math.round(
     response.data.wind.speed
   );
+  document.querySelector("#weather-description").innerHTML =
+    response.data.weather[0].main;
 }
 
 function showButtonResults(response) {
