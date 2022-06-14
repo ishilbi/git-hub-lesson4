@@ -58,39 +58,34 @@ function displayWeatherCondition(response) {
     response.data.weather[0].main;
 }
 
-function search(city) {
+function searchCity(city) {
   let apiKey = "f3a66372ec0940e078d8212f937f2ff1";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#city-input").value;
-  search(city);
+  searchCity(city);
 }
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
-function showButtonResults(response) {
-  let currentTemperature = document.querySelector(".temperature");
-  let h2 = document.querySelector("h2");
-  let temperature = Math.round(response.data.main.temp);
-  h2.innerHTML = `${response.data.name}`;
-  currentTemperature.innerHTML = `${temperature}`;
-}
-function showPosition(position) {
-  let latitude = position.coords.latitude;
-  let longitude = position.coords.longitude;
+function searchLocation(position) {
   let apiKey = "f3a66372ec0940e078d8212f937f2ff1";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(showButtonResults);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayWeatherCondition);
 }
 
-function getCurrentPosition() {
-  navigator.geolocation.getCurrentPosition(showPosition);
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
 }
-let button = document.querySelector("button");
-button.addEventListener("click", getCurrentPosition);
-search("Seoul");
+
+let currentLocationButton = document.querySelector("#current-location-button");
+currentLocationButton.addEventListener("click", getCurrentLocation);
+
+searchCity("Seoul");
